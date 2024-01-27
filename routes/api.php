@@ -88,6 +88,10 @@ Route::post('criarAgendaProfissional', [AgendaController::class, 'criarHorarioPr
 
 Route::post('criarAgendaFindProfissional', [AgendaController::class, 'agendaFindTimeProfissional']);
 
+//*ADM
+
+Route::post('adm/cadastroCliente', [ClienteController::class, 'store']);
+
 
 
 
