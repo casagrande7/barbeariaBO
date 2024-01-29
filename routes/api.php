@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
@@ -163,6 +164,26 @@ Route::get('adm/pesquisaIdAgenda/{id}', [AgendaController::class, 'pesquisarPorI
 Route::post('adm/criarAgendaProfissional', [AgendaController::class, 'criarHorarioProfissional']);
 
 Route::post('adm/criarAgendaFindProfissional', [AgendaController::class, 'agendaFindTimeProfissional']);
+
+//* Cadastro de ADMs
+
+Route::post('cadastro/adm', [AdministradorController::class, 'cadastroAdm']);
+
+Route::post('pesquisa/email/adm', [AdministradorController::class , 'pesquisaPorEmailAdm']);
+
+Route::post('pesquisa/cpf/adm', [AdministradorController::class, 'pesquisaPorCpfAdm']);
+
+Route::post('pesquisa/celular/adm', [AdministradorController::class, 'pesquisPorCelularAdm']);
+
+Route::post('pesquisa/nome/adm', [AdministradorController::class, 'pesquisaPorNomeAdm']);
+
+Route::get('retornarTodosAdms', [AdministradorController::class, 'retornarTodosAdm']);
+
+Route::get('pesquisa/adm/{id}', [AdministradorController::class, 'pesquisaPorIdAdm']);
+
+Route::delete('excluir/adm/{id}', [AdministradorController::class, 'deletarAdm']);
+
+Route::put('atualizar/adm', [AdministradorController::class, 'atualizarAdm']);
 
 
 
