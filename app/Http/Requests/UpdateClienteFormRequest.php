@@ -25,7 +25,7 @@ class UpdateClienteFormRequest extends FormRequest
     {
         return [
             'nome' => 'max:120|min:5',
-            'celular' => 'max:11|min:10',
+            'celular' => 'max:11|min:10|unique:clientes,celular,' .$this -> id,
             'email' => 'max:120|email:rfc,|unique:clientes,email,' .$this-> id,
             'cpf' => 'max:11|min:11|unique:clientes,cpf,' . $this -> id,
             'dataNascimento' => '',

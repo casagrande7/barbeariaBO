@@ -87,6 +87,21 @@ return response()->json([
 ]);
 }
 
+public function pesquisarPorCelular(Request $request){
+    $profissional = Profissional::where('celular' , 'like', '%' .$request->celular .'%')->get();
+
+    if(count($profissional)> 0){
+        return response()->json([
+            'status' => true,
+            'data' => $profissional
+        ]);
+    }
+    return response()->json([
+        'status' => false,
+        'message' => 'Não há resultados para a pesquisa'
+    ]);
+}
+
 public function pesquisandoPorEmail(Request $request){
     $profissional = Profissional::where('email', 'like', '%'. $request->email .'%')->get();
 
