@@ -196,7 +196,15 @@ Route::delete('deletar/pagamento/{id}', [TipoDePagamentoController::class, 'dele
 
 Route::put('atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);    
 
+//* ADM Cadastro do Tipo de Pagamento
 
+Route::post('adm/pagamento', [TipoDePagamentoController::class, 'tipoDePagamento']);
+
+Route::post('adm/pesquisa/pagamento', [TipoDePagamentoController::class, 'pesquisaPorPagamento']);
+
+Route::delete('adm/deletar/pagamento/{id}', [TipoDePagamentoController::class, 'deletarPagamento']);
+
+Route::put('adm/atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);   
 
 
 
