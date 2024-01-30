@@ -206,6 +206,21 @@ Route::delete('adm/deletar/pagamento/{id}', [TipoDePagamentoController::class, '
 
 Route::put('adm/atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);   
 
+//* ADM Cadastro de Horários
+
+Route::put('adm/updateAgenda', [AgendaController::class, 'atualizarAgenda']);
+
+Route::delete('adm/deletarAgenda/{id}', [AgendaController::class, 'deletarAgenda']);
+
+Route::get('adm/todosAgenda', [AgendaController::class, 'retornarTodosAgenda']);
+
+Route::post('adm/pesquisaHorarios', [AgendaController::class, 'pesquisarPorData']);
+
+Route::get('adm/pesquisaIdAgenda/{id}', [AgendaController::class, 'pesquisarPorIdAgenda']);
+
+Route::post('adm/criarAgendaProfissional', [AgendaController::class, 'criarHorarioProfissional']);
+
+Route::post('adm/criarAgendaFindProfissional', [AgendaController::class, 'agendaFindTimeProfissional']);
 
 
 
