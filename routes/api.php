@@ -5,6 +5,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\TipoDePagamentoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -184,6 +185,16 @@ Route::get('pesquisa/adm/{id}', [AdministradorController::class, 'pesquisaPorIdA
 Route::delete('excluir/adm/{id}', [AdministradorController::class, 'deletarAdm']);
 
 Route::put('atualizar/adm', [AdministradorController::class, 'atualizarAdm']);
+
+//* Cadastro do Tipo de Pagamento
+
+Route::post('tipoDePagamento/cadastro', [TipoDePagamentoController::class, 'tipoDePagamento']);
+
+Route::post('pesquisa/pagamento', [TipoDePagamentoController::class, 'pesquisaPorPagamento']);
+
+Route::delete('deletar/pagamento/{id}', [TipoDePagamentoController::class, 'deletarPagamento']);
+
+Route::put('atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);    
 
 
 
