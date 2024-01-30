@@ -49,6 +49,7 @@ class UpdateAdmFormRequest extends FormRequest
             'celular.max' => 'O campo Celular deve conter no máximo 11 caracteres',
             'celular.min' => 'O campo Celular deve conter no mínimo 10 caracteres',
             'email.max' => 'O campo Email deve conter no máximo 120 caracteres',
+            'email.unique' => 'E-mail já cadastrado no sistema',
             'cpf.max' => 'O campo CPF deve conter no máximo 11 caracteres',
             'cpf.min' => 'O campo CPF deve conter no mínimo 11 caracteres',
         ];
