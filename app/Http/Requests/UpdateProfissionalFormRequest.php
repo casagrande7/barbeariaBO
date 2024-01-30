@@ -25,7 +25,7 @@ class UpdateProfissionalFormRequest extends FormRequest
     {
         return [
             'nome' => 'max:120|min:5',
-            'celular' => 'max:11|min:10',
+            'celular' => 'max:11|min:10|unique:profissionals,celular' .$this -> id,
             'email' => 'max:120|email:rfc,|unique:profissionals,email,' .$this -> id,
             'cpf' => 'max:11|min:11|unique:profissionals,cpf,' . $this -> id,
             'dataNascimento' => '',
@@ -58,9 +58,12 @@ class UpdateProfissionalFormRequest extends FormRequest
     'nome.min' => 'O campo Nome deve conter no mínimo 5 caracteres',
     'celular.max' => 'O campo Celular deve conter no máximo 11 caracteres',
     'celular.min' => 'O campo Celular deve conter no mínimo 10 caracteres',
+    'celular.unique' => 'Celular já cadastrado no sistema',
     'email.max' => 'O campo Email deve conter no máximo 120 caracteres',
+    'email.unique' => 'E-mail já cadastrado no sistema',
     'cpf.max' => 'O campo CPF deve conter no máximo 11 caracteres',
     'cpf.min' => 'O campo CPF deve conter no mínimo 11 caracteres',
+    'cpf.unique' => 'CPF já cadastrado no sistema',
     'dataNascimento.date' => 'O campo DataNascimento deve conter só datas',
     'cidade.max' => 'O campo Cidade deve conter no máximo 120 caracteres',
     'estado.max' => 'O campo Estado deve conter no máximo 2 caracteres',
