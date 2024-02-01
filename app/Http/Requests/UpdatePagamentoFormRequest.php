@@ -26,7 +26,7 @@ class UpdatePagamentoFormRequest extends FormRequest
         return [
             'nome' => '',
             'taxa' => 'max:4|min:2',
-            'condicao' => 'max:7|min:5'
+            'status' => 'max:15|min:5'
         ];
     }
 
@@ -43,8 +43,8 @@ class UpdatePagamentoFormRequest extends FormRequest
         return [
             'taxa.max' => 'O campo taxa deve conter no máximo 4 caracteres',
             'taxa.min' => 'O campo taxa deve conter no mínimo 2 caracteres',
-            'condicao.max' => 'O campo Condição deve conter no máximo 7 caracteres',
-            'condicao.min' => 'O campo Condição deve conter no mínimo 5 caracteres'
+            'status.max' => 'O campo Status deve conter no máximo 7 caracteres',
+            'status.min' => 'O campo Status deve conter no mínimo 5 caracteres'
         ];
     }
 }
