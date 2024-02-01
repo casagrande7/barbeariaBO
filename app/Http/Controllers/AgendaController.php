@@ -65,6 +65,15 @@ class AgendaController extends Controller
     {
         $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
 
+        $dataHoraAgendamento = new DateTime($request->data_hora);
+        $dataAtual = Carbon::now('America/Sao_Paulo');
+        if ($dataHoraAgendamento < $dataAtual) {
+            return response()->json([
+                "status" => false,
+                "message" => "Não é possível cadastrar um horário antes do dia atual e horário atual"
+            ], 400);
+        }
+
         if (count($agenda) > 0) {
             return response()->json([
                 "status" => false,

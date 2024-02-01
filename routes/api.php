@@ -96,15 +96,15 @@ Route::post('criarAgendaFindProfissional', [AgendaController::class, 'agendaFind
 
 Route::post('adm/cadastroCliente', [ClienteController::class, 'store']);
 
-Route::get('adm/pesquisar/{id}', [ClienteController::class, 'pesquisaPorId']);
+Route::get('adm/pesquisar/cliente/{id}', [ClienteController::class, 'pesquisaPorId']);
 
-Route::post('adm/buscaNome', [ClienteController::class, 'pesquisarPorNome']);
+Route::post('adm/buscaNome/cliente', [ClienteController::class, 'pesquisarPorNome']);
 
-Route::post('adm/cpf', [ClienteController::class, 'pesquisarPorCpf']);
+Route::post('adm/cpf/cliente', [ClienteController::class, 'pesquisarPorCpf']);
 
-Route::post('adm/email', [ClienteController::class, 'pesquisarPorEmail']);
+Route::post('adm/email/cliente', [ClienteController::class, 'pesquisarPorEmail']);
 
-Route::post('adm/celular', [ClienteController::class, 'pesquisarPorCelular']);
+Route::post('adm/celular/cliente', [ClienteController::class, 'pesquisarPorCelular']);
 
 Route::get('adm/todosClientes', [ClienteController::class, 'retornarTodosClientes']);
 
@@ -230,25 +230,25 @@ Route::post('adm/criarAgendaFindProfissional', [AgendaController::class, 'agenda
 
 //Profissional Cadastro Clientes
 
-Route::post('profissional/registro',[ClienteController::class, 'store']);
+Route::post('profissional/registro/cliente',[ClienteController::class, 'store']);
 
 Route::get('profissional/pesquisa/{id}', [ClienteController::class, 'pesquisaPorId']);
 
-Route::post('profissional/buscaNome', [ClienteController::class, 'pesquisarPorNome']);
+Route::post('profissional/buscaNome/cliente', [ClienteController::class, 'pesquisarPorNome']);
 
-Route::post('profissional/cpf', [ClienteController::class, 'pesquisarPorCpf']);
+Route::post('profissional/cpf/cliente', [ClienteController::class, 'pesquisarPorCpf']);
 
-Route::post('profissional/email', [ClienteController::class, 'pesquisarPorEmail']);
+Route::post('profissional/email/cliente', [ClienteController::class, 'pesquisarPorEmail']);
 
-Route::post('profissional/celular', [ClienteController::class, 'pesquisarPorCelular']);
+Route::post('profissional/celular/cliente', [ClienteController::class, 'pesquisarPorCelular']);
 
 Route::get('profissional/todos', [ClienteController::class, 'retornarTodosClientes']);
 
 Route::put('profissional/cliente/atualizar',[ClienteController::class, 'atualizarClientes']);
 
-Route::delete('profissional/excluir/{id}',[ClienteController::class, 'excluirCliente']);
+Route::delete('profissional/excluir/cliente/{id}',[ClienteController::class, 'excluirCliente']);
 
-Route::put('profissional/recuperarSenhas', [ClienteController::class, 'recuperarSenha']);
+Route::put('profissional/cliente/recuperarSenhas', [ClienteController::class, 'recuperarSenha']);
 
 
 
