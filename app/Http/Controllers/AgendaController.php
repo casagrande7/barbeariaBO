@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AgendaFormRequest;
 use App\Http\Requests\UpdateAgendaFormRequest;
 use App\Models\Agenda;
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
@@ -67,8 +68,8 @@ class AgendaController extends Controller
                 "status" => false,
                 "message" => "Horario ja cadastrado",
                 "data" => $agenda
-            ], 200);    
-        } else{
+            ], 200);
+        } else {
             $agenda = Agenda::find($request->id);
 
             if (!isset($agenda)) {
@@ -76,31 +77,30 @@ class AgendaController extends Controller
                     'status' => false,
                     'message' => 'Não há resultados para a Agenda'
                 ]);
-        }
-        if (isset($request->profissional_id)) {
-            $agenda->profissional_id = $request->profissional_id;
-        }
-        if (isset($request->cliente_id)) {
-            $agenda->cliente_id = $request->cliente_id;
-        }
-        if (isset($request->servico_id)) {
-            $agenda->servico_id = $request->servico_id;
-        }
-        if (isset($request->data_hora)) {
-            $agenda->data_hora = $request->data_hora;
-        }
-        if (isset($request->tipo_pagamento)) {
-            $agenda->tipo_pagamento = $request->tipo_pagamento;
-        }
-        if (isset($request->valor)) {
-            $agenda->valor = $request->valor;
-        }
-        $agenda->update();
-        return response()->json([
-            'status' => true,
-            'message' => 'Agenda atualizada com sucesso'
-        ]);
-
+            }
+            if (isset($request->profissional_id)) {
+                $agenda->profissional_id = $request->profissional_id;
+            }
+            if (isset($request->cliente_id)) {
+                $agenda->cliente_id = $request->cliente_id;
+            }
+            if (isset($request->servico_id)) {
+                $agenda->servico_id = $request->servico_id;
+            }
+            if (isset($request->data_hora)) {
+                $agenda->data_hora = $request->data_hora;
+            }
+            if (isset($request->tipo_pagamento)) {
+                $agenda->tipo_pagamento = $request->tipo_pagamento;
+            }
+            if (isset($request->valor)) {
+                $agenda->valor = $request->valor;
+            }
+            $agenda->update();
+            return response()->json([
+                'status' => true,
+                'message' => 'Agenda atualizada com sucesso'
+            ]);
         }
     }
 
@@ -125,7 +125,7 @@ class AgendaController extends Controller
     {
         $agenda = Agenda::all();
 
-        if(count($agenda)> 0){
+        if (count($agenda) > 0) {
             return response()->json([
                 'status' => true,
                 'data' => $agenda
@@ -158,12 +158,32 @@ class AgendaController extends Controller
 
         $agenda = Agenda::where('data_hora', '=', $request->data_hora)->where('profissional_id', '=', $request->profissional_id)->get();
 
+        $profissional = Profissional::find($request->profissional_id);
+        if (isset($profissional)) {
+            $agenda = Agenda::create([
+                'profissional_id' => $request->profissional_id,
+                'data_hora' => $request->data_hora
+            ]);
+            return response()->json([
+                "status" => true,
+                "message" => "Agenda cadastrado com sucesso",
+                "data" => $agenda
+            ], 200);
+        }
+        if (!isset($profissional)) {
+            return response()->json([
+                "status" => false,
+                "message" => "Profissional nao encontrado"
+            ], 200);
+        }
+
+
         if (count($agenda) > 0) {
             return response()->json([
                 "status" => false,
                 "message" => "Horario já cadastrado",
                 "data" => $agenda
-            ], 200);    
+            ], 200);
         } else {
 
             $agenda = Agenda::create([
@@ -177,6 +197,12 @@ class AgendaController extends Controller
             ], 200);
         }
     }
+
+
+
+
+
+
     public function agendaFindTimeProfissional(Request $request)
     {
         if ($request->profissional_id == 0 || $request->profissional_id == '') {
@@ -202,4 +228,3 @@ class AgendaController extends Controller
         ]);
     }
 }
-
