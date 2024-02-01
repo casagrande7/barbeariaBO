@@ -222,6 +222,27 @@ Route::post('adm/criarAgendaProfissional', [AgendaController::class, 'criarHorar
 
 Route::post('adm/criarAgendaFindProfissional', [AgendaController::class, 'agendaFindTimeProfissional']);
 
+//Profissional Cadastro Clientes
+
+Route::post('profissional/registro',[ClienteController::class, 'store']);
+
+Route::get('profissional/pesquisa/{id}', [ClienteController::class, 'pesquisaPorId']);
+
+Route::post('profissional/buscaNome', [ClienteController::class, 'pesquisarPorNome']);
+
+Route::post('profissional/cpf', [ClienteController::class, 'pesquisarPorCpf']);
+
+Route::post('profissional/email', [ClienteController::class, 'pesquisarPorEmail']);
+
+Route::post('profissional/celular', [ClienteController::class, 'pesquisarPorCelular']);
+
+Route::get('profissional/todos', [ClienteController::class, 'retornarTodosClientes']);
+
+Route::put('profissional/cliente/atualizar',[ClienteController::class, 'atualizarClientes']);
+
+Route::delete('profissional/excluir/{id}',[ClienteController::class, 'excluirCliente']);
+
+Route::put('profissional/recuperarSenhas', [ClienteController::class, 'recuperarSenha']);
 
 
 
