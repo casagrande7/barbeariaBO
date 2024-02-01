@@ -212,6 +212,12 @@ Route::delete('adm/deletar/pagamento/{id}', [TipoDePagamentoController::class, '
 
 Route::put('adm/atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);   
 
+Route::get('adm/visualizarTodosPagamentos', [TipoDePagamentoController::class, 'retornarTodos']);
+
+Route::get('adm/visualizarHabilitados', [TipoDePagamentoController::class, 'visualizarCadastroTipoPagamentoHabilitado']);
+
+Route::get('adm/visualizarDesabilitados', [TipoDePagamentoController::class, 'visualizarCadastroTipoPagamentoDesabilitado']);
+
 //* ADM Cadastro de Horários
 
 Route::put('adm/updateAgenda', [AgendaController::class, 'atualizarAgenda']);
