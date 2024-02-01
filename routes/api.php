@@ -130,7 +130,7 @@ Route::post('adm/pesquisaPorCelular', [ProfissionalController::class, 'pesquisar
 
 Route::get('adm/pesquisarTodos', [ProfissionalController::class, 'retornandoTodosProfissionais']);
 
-Route::put('adm/update',[ProfissionalController::class, 'atualizarProfissional']);
+Route::put('adm/profissional/update',[ProfissionalController::class, 'atualizarProfissional']);
 
 Route::delete('adm/deletar/{id}', [ProfissionalController::class, 'deletarProfissional']);
 
