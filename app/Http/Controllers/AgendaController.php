@@ -163,7 +163,7 @@ class AgendaController extends Controller
         if ($dataHoraAgendamento < $dataAtual) {
             return response()->json([
                 "status" => false,
-                "message" => "Não é possível cadastrar um horário antes do dia atual e horario atual"
+                "message" => "Não é possível cadastrar um horário antes do dia atual e horário atual"
             ], 400);
         }
     
