@@ -11,6 +11,6 @@ class TipoDePagamento extends Model
     protected $fillable =[
         'nome',
         'taxa',
-        'condicao'
+        'status'
     ];
 }

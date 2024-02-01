@@ -24,9 +24,9 @@ class PagamentoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required',
+            'nome' => 'required|unique:tipo_de_pagamentoS,nome',
             'taxa' => 'max:4|min:2',
-            'condicao' => 'required|max:7|min:5'
+            'status' => 'required|max:15|min:5'
         ];
     }
 
@@ -42,11 +42,12 @@ class PagamentoFormRequest extends FormRequest
     {
         return [
             'nome.required' => 'O campo Nome é obrigatório conter o tipo de pagamento',
+            'nome.unique' => 'Nome já foi cadastrado, informe outro',
             'taxa.max' => 'O campo Taxa deve conter no máximo 4 caracteres',
             'taxa.min' => 'O campo Taxa deve conter no mínimo 2 caracteres',
             'condicao.required' => 'O campo Condição é obrigatório',
-            'condicao.max' => 'O campo Condição deve conter no máximo 7 caracteres',
-            'condicao.min' => 'O campo Condição deve conter no mínimo 5 caracteres'
+            'status.max' => 'O campo Condição deve conter no máximo 15 caracteres',
+            'status.min' => 'O campo Condição deve conter no mínimo 5 caracteres'
         ];
     }
 }

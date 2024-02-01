@@ -194,7 +194,13 @@ Route::post('pesquisa/pagamento', [TipoDePagamentoController::class, 'pesquisaPo
 
 Route::delete('deletar/pagamento/{id}', [TipoDePagamentoController::class, 'deletarPagamento']);
 
-Route::put('atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);    
+Route::put('atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);  
+
+Route::get('visualizarTodosPagamentos', [TipoDePagamentoController::class, 'retornarTodos']);
+
+Route::get('visualizarHabilitados', [TipoDePagamentoController::class, 'visualizarCadastroTipoPagamentoHabilitado']);
+
+Route::get('visualizarDesabilitados', [TipoDePagamentoController::class, 'visualizarCadastroTipoPagamentoDesabilitado']);
 
 //* ADM Cadastro do Tipo de Pagamento
 
