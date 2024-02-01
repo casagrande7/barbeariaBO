@@ -24,7 +24,7 @@ class PagamentoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|unique:tipo_de_pagamentos,nome',
+            'nome' => 'required',
             'taxa' => 'max:4|min:2',
             'status' => 'required|max:15|min:5'
         ];
@@ -42,7 +42,6 @@ class PagamentoFormRequest extends FormRequest
     {
         return [
             'nome.required' => 'O campo Nome é obrigatório conter o tipo de pagamento',
-            'nome.unique' => 'Nome já foi cadastrado, informe outro',
             'taxa.max' => 'O campo Taxa deve conter no máximo 4 caracteres',
             'taxa.min' => 'O campo Taxa deve conter no mínimo 2 caracteres',
             'status.required' => 'O campo Status é obrigatório',
