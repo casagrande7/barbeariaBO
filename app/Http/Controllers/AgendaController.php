@@ -125,9 +125,16 @@ class AgendaController extends Controller
     {
         $agenda = Agenda::all();
 
+        if(count($agenda)> 0){
+            return response()->json([
+                'status' => true,
+                'data' => $agenda
+            ]);
+        }
+
         return response()->json([
-            'status' => true,
-            'data' => $agenda
+            'status' => false,
+            'message' => 'Não há nenhum agendamento registrado no sistema'
         ]);
     }
 
