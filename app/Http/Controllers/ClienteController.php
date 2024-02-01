@@ -129,9 +129,16 @@ class ClienteController extends Controller
     {
         $clientes = Cliente::all();
 
+        if (count($clientes) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $clientes
+            ]);
+        }
+
         return response()->json([
-            'status' => true,
-            'data' => $clientes
+            'status' => false,
+            'message' => 'Não há nenhum clientes registrado no sistema'
         ]);
     }
 
@@ -233,8 +240,7 @@ class ClienteController extends Controller
         if ($clientes) {
             $novaSenha = $clientes->cpf;
             $clientes->update([
-                'senha' => Hash::make
-                ($novaSenha),
+                'senha' => Hash::make($novaSenha),
                 'updated_at' => now()
             ]);
             return response()->json([

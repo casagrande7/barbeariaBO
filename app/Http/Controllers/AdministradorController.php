@@ -122,9 +122,15 @@ class AdministradorController extends Controller
     {
         $adm = Administrador::all();
 
+        if (count($adm) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $adm
+            ]);
+        }
         return response()->json([
-            'status' => true,
-            'data' => $adm
+            'status' => false,
+            'message' => 'Não há nenhum Administrador cadastrado no sistema'
         ]);
     }
 
