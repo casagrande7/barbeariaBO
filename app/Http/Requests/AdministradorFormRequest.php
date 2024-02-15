@@ -24,11 +24,11 @@ class AdministradorFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required|max:120|min:5',
-            'celular' => 'required|max:11|min:10|unique:administradors,celular',
+            'name' => 'required|max:120|min:5',
+            'cellphone' => 'required|max:11|min:10|unique:administradors,cellphone',
             'email' => 'required|max:120|unique:administradors,email',
             'cpf' => 'required|max:11|min:11|unique:administradors,cpf',
-            'senha' => 'required'
+            'password' => 'required'
         ];
     }
 
@@ -43,13 +43,13 @@ class AdministradorFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'O campo Nome é obrigatório',
-            'nome.max' => 'O campo Nome deve conter no máximo 120 caracteres',
-            'nome.min' => 'O campo Nome deve conter no mínimo 5 caracteres',
-            'celular.required' => 'O campo Celular é obrigatório',
-            'celular.max' => 'O campo Celular deve conter no máximo 11 caracteres',
-            'celular.min' => 'O campo Celular deve conter no mínimo 10 caracteres',
-            'celular.unique' => 'Celular já cadastrado no sistema',
+            'name.required' => 'O campo Nome é obrigatório',
+            'name.max' => 'O campo Nome deve conter no máximo 120 caracteres',
+            'name.min' => 'O campo Nome deve conter no mínimo 5 caracteres',
+            'cellphone.required' => 'O campo Celular é obrigatório',
+            'cellphone.max' => 'O campo Celular deve conter no máximo 11 caracteres',
+            'cellphone.min' => 'O campo Celular deve conter no mínimo 10 caracteres',
+            'cellphone.unique' => 'Celular já cadastrado no sistema',
             'email.required' => 'O campo E-mail é obrigatório',
             'email.max' => 'O campo E-mail deve conter no máximo 120 caracteres',
             'email.unique' => 'E-mail já cadastrado no sistema',
@@ -57,7 +57,7 @@ class AdministradorFormRequest extends FormRequest
             'cpf.max' => 'O campo CPF deve conter no máximo 11 caracteres',
             'cpf.min' => 'O campo CPF deve conter no mínimo 11 caracteres',
             'cpf.unique' => 'CPF já cadastrado no sistema',
-            'senha.required' => 'O campo Senha é obrigatório'
+            'password.required' => 'O campo Senha é obrigatório'
         ];
     }
 }

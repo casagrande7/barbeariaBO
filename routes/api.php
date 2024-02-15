@@ -6,8 +6,11 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\TipoDePagamentoController;
+use App\Http\Middleware\IsAuthenticated;
+use App\Http\Middleware\SetSanctumGuard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +32,13 @@ Route::post('nome', [ServicoController::class, 'pesquisaPorNome']);
 
 Route::get('all', [ServicoController::class, 'retornarTodos']);
 
-Route::put('atualizar',[ServicoController::class, 'update']);
+Route::put('atualizar', [ServicoController::class, 'update']);
 
-Route::delete('delete/{id}',[ServicoController::class, 'excluir']);
+Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 
 
 //* Clientes
-Route::post('registro',[ClienteController::class, 'store']);
+Route::post('registro', [ClienteController::class, 'store']);
 
 Route::get('pesquisa/{id}', [ClienteController::class, 'pesquisaPorId']);
 
@@ -49,9 +52,9 @@ Route::post('celular', [ClienteController::class, 'pesquisarPorCelular']);
 
 Route::get('todos', [ClienteController::class, 'retornarTodosClientes']);
 
-Route::put('cliente/atualizar',[ClienteController::class, 'atualizarClientes']);
+Route::put('cliente/atualizar', [ClienteController::class, 'atualizarClientes']);
 
-Route::delete('excluir/{id}',[ClienteController::class, 'excluirCliente']);
+Route::delete('excluir/{id}', [ClienteController::class, 'excluirCliente']);
 
 Route::put('recuperarSenhas', [ClienteController::class, 'recuperarSenha']);
 
@@ -60,7 +63,7 @@ Route::post('cadastro', [ProfissionalController::class, 'store']);
 
 Route::get('pesquisar/{id}', [ProfissionalController::class, 'pesquisandoPorId']);
 
-Route::post('procurarNome' , [ProfissionalController::class, 'pesquisandoPorNome']);
+Route::post('procurarNome', [ProfissionalController::class, 'pesquisandoPorNome']);
 
 Route::post('pesquisarCpf', [ProfissionalController::class, 'pesquisandoPorCpf']);
 
@@ -70,7 +73,7 @@ Route::post('pesquisaPorCelular', [ProfissionalController::class, 'pesquisarPorC
 
 Route::get('pesquisarTodos', [ProfissionalController::class, 'retornandoTodosProfissionais']);
 
-Route::put('update',[ProfissionalController::class, 'atualizarProfissional']);
+Route::put('update', [ProfissionalController::class, 'atualizarProfissional']);
 
 Route::delete('deletar/{id}', [ProfissionalController::class, 'deletarProfissional']);
 
@@ -108,9 +111,9 @@ Route::post('adm/celular/cliente', [ClienteController::class, 'pesquisarPorCelul
 
 Route::get('adm/todosClientes', [ClienteController::class, 'retornarTodosClientes']);
 
-Route::put('adm/cliente/atualizar',[ClienteController::class, 'atualizarClientes']);
+Route::put('adm/cliente/atualizar', [ClienteController::class, 'atualizarClientes']);
 
-Route::delete('adm/excluir/{id}',[ClienteController::class, 'excluirCliente']);
+Route::delete('adm/excluir/{id}', [ClienteController::class, 'excluirCliente']);
 
 Route::put('adm/recuperarSenhas', [ClienteController::class, 'recuperarSenha']);
 
@@ -120,7 +123,7 @@ Route::post('adm/cadastro', [ProfissionalController::class, 'store']);
 
 Route::get('adm/pesquisar/{id}', [ProfissionalController::class, 'pesquisandoPorId']);
 
-Route::post('adm/procurarNome' , [ProfissionalController::class, 'pesquisandoPorNome']);
+Route::post('adm/procurarNome', [ProfissionalController::class, 'pesquisandoPorNome']);
 
 Route::post('adm/pesquisarCpf', [ProfissionalController::class, 'pesquisandoPorCpf']);
 
@@ -130,7 +133,7 @@ Route::post('adm/pesquisaPorCelular', [ProfissionalController::class, 'pesquisar
 
 Route::get('adm/pesquisarTodos', [ProfissionalController::class, 'retornandoTodosProfissionais']);
 
-Route::put('adm/profissional/update',[ProfissionalController::class, 'atualizarProfissional']);
+Route::put('adm/profissional/update', [ProfissionalController::class, 'atualizarProfissional']);
 
 Route::delete('adm/deletar/{id}', [ProfissionalController::class, 'deletarProfissional']);
 
@@ -146,9 +149,9 @@ Route::post('adm/servico/pesquisaPorNome', [ServicoController::class, 'pesquisaP
 
 Route::get('adm/servico/retornarTodos', [ServicoController::class, 'retornarTodos']);
 
-Route::put('adm/servico/atualizar',[ServicoController::class, 'update']);
+Route::put('adm/servico/atualizar', [ServicoController::class, 'update']);
 
-Route::delete('adm/servico/delete/{id}',[ServicoController::class, 'excluir']);
+Route::delete('adm/servico/delete/{id}', [ServicoController::class, 'excluir']);
 
 //* ADM Cadastro do Agendamento
 
@@ -168,9 +171,15 @@ Route::post('adm/criarAgendaFindProfissional', [AgendaController::class, 'agenda
 
 //* Cadastro de ADMs
 
+Route::post('store/adm', [AdministradorController::class, 'store']);
+
+Route::get('admin/teste', [AdministradorController::class, 'verificaUsuarioLogado'])->middleware(['auth:sanctum', SetSanctumGuard::class, IsAuthenticated::class]);
+
+Route::post('/login/adm', [AdministradorController::class, 'login']);
+
 Route::post('cadastro/adm', [AdministradorController::class, 'cadastroAdm']);
 
-Route::post('pesquisa/email/adm', [AdministradorController::class , 'pesquisaPorEmailAdm']);
+Route::post('pesquisa/email/adm', [AdministradorController::class, 'pesquisaPorEmailAdm']);
 
 Route::post('pesquisa/cpf/adm', [AdministradorController::class, 'pesquisaPorCpfAdm']);
 
@@ -194,7 +203,7 @@ Route::post('pesquisa/pagamento', [TipoDePagamentoController::class, 'pesquisaPo
 
 Route::delete('deletar/pagamento/{id}', [TipoDePagamentoController::class, 'deletarPagamento']);
 
-Route::put('atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);  
+Route::put('atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);
 
 Route::get('visualizarTodosPagamentos', [TipoDePagamentoController::class, 'retornarTodos']);
 
@@ -210,7 +219,7 @@ Route::post('adm/pesquisa/pagamento', [TipoDePagamentoController::class, 'pesqui
 
 Route::delete('adm/deletar/pagamento/{id}', [TipoDePagamentoController::class, 'deletarPagamento']);
 
-Route::put('adm/atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);   
+Route::put('adm/atualizar/pagamento', [TipoDePagamentoController::class, 'atualizarPagamento']);
 
 Route::get('adm/visualizarTodosPagamentos', [TipoDePagamentoController::class, 'retornarTodos']);
 
@@ -236,7 +245,7 @@ Route::post('adm/criarAgendaFindProfissional', [AgendaController::class, 'agenda
 
 //Profissional Cadastro Clientes
 
-Route::post('profissional/registro/cliente',[ClienteController::class, 'store']);
+Route::post('profissional/registro/cliente', [ClienteController::class, 'store']);
 
 Route::get('profissional/pesquisa/{id}', [ClienteController::class, 'pesquisaPorId']);
 
@@ -250,15 +259,8 @@ Route::post('profissional/celular/cliente', [ClienteController::class, 'pesquisa
 
 Route::get('profissional/todos', [ClienteController::class, 'retornarTodosClientes']);
 
-Route::put('profissional/cliente/atualizar',[ClienteController::class, 'atualizarClientes']);
+Route::put('profissional/cliente/atualizar', [ClienteController::class, 'atualizarClientes']);
 
-Route::delete('profissional/excluir/cliente/{id}',[ClienteController::class, 'excluirCliente']);
+Route::delete('profissional/excluir/cliente/{id}', [ClienteController::class, 'excluirCliente']);
 
 Route::put('profissional/cliente/recuperarSenhas', [ClienteController::class, 'recuperarSenha']);
-
-
-
-
-
-
-
