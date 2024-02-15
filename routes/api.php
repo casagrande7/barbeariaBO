@@ -38,6 +38,11 @@ Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 
 
 //* Clientes
+
+Route::post('cadastro/clientes', [ClienteController::class, 'cadastroLogin']);
+
+Route::post('login/clientes', [ClienteController::class, 'loginClientes']);
+
 Route::post('registro', [ClienteController::class, 'store']);
 
 Route::get('pesquisa/{id}', [ClienteController::class, 'pesquisaPorId']);

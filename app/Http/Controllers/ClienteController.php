@@ -6,6 +6,7 @@ use App\Http\Requests\ClienteFormRequest;
 use App\Http\Requests\UpdateClienteFormRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
@@ -253,6 +254,59 @@ class ClienteController extends Controller
                 'status' => false,
                 'message' => 'Cliente não encontrado'
             ]);
+        }
+    }
+
+    public function cadastroLogin(ClienteFormRequest $request)
+    {
+        try {
+            $data = $request->all();
+
+            $data['senha'] = Hash::make($request->senha);
+
+            $response = Cliente::create($data)->createToken($request->server('HTTP_USER_AGENT'))->plainTextToken;
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Cliente cadastrado com sucesso',
+                'token' => $response
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function loginClientes(Request $request)
+    {
+        try {
+            if (Auth::guard('clientes')->attempt([
+                'email' => $request->email,
+                'senha' => $request->senha
+            ])) {
+                $user = Auth::guard('clientes')->user();
+
+                /** @var UserContract $user */
+
+                $token = $user->createToken($request->server('HTTP_USER_AGENT', ['clientes']))->plainTextToken;
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Login efetuado com sucesso',
+                    'token' => $token
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Credenciais incorretas'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
         }
     }
 }

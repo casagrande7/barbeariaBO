@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdministradorFormRequest;
+use App\Http\Requests\ClienteFormRequest;
 use App\Http\Requests\UpdateAdmFormRequest;
 use App\Http\Requests\UpdateFormRequest;
 use App\Models\Administrador;

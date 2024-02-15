@@ -23,4 +23,14 @@ class SetSanctumGuard
         }
         return $next($request);
     }
+
+    public function handle2(Request $request, Closure $next): Response
+    {
+        if (Str::startsWith($request->getRequestUri(), '/api/cliente')) {
+            config(['sanctum.guard' => 'clientes']);
+        } else {
+            return 'Sem guard';
+        }
+        return $next($request);
+    }
 }
